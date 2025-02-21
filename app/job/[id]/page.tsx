@@ -20,7 +20,7 @@ const getData = async (id: string) => {
   return res.json();
 };
 const page = async ({ params }: DynamicProps) => {
-  const { id } = params;
+  const { id } = await params;
   const job = await getData(id);
   const jobTitle = job.name;
   const formattedPostedDate = formatPostedDate(job.createdAt);
