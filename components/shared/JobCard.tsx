@@ -7,7 +7,6 @@ import Image from "next/image";
 interface JobsCardProps {
   job: jobType;
 }
-
 const JobCard = ({ job }: JobsCardProps) => {
   return (
     <Link href={`/job/${job.id}`}>
