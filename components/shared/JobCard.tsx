@@ -11,21 +11,22 @@ interface JobsCardProps {
 const JobCard = ({ job }: JobsCardProps) => {
   return (
     <Link href={`/job/${job.id}`}>
-      <div className="border p-3 rounded-md flex flex-col hover:bg-purple-600 transition duration-700 hover:text-white">
-        <div className="flex justify-between">
+      <div className="border p-3 rounded-md flex flex-col hover:bg-purple-600 transition duration-700 hover:text-white w-full h-full flex-grow">
+        <div className="flex-grow justify-between">
           <div>
             <Image
               src={job.img ? job.img : "/fallbackimage.png"}
               height={40}
               width={40}
               alt={`${job.author} logo`}
+              className="object-cover"
             />
             <h2 className="text-sm">{job.author}</h2>
           </div>
           <h2>{job.salary}k/year</h2>
         </div>
 
-        <div className="mt-3 text-xl">
+        <div className="mt-3 text-md font-semibold">
           <h3>{job.name}</h3>
           <p>{job.location}</p>
           <span className="bg-purple-600 text-xs px-3 rounded-md text-white">

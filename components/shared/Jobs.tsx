@@ -25,7 +25,7 @@ const Jobs = () => {
           <span className="text-sm">Check back later</span>
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 w-[90%] mx-auto max-w-[1400px]">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 w-[90%] mx-auto max-w-[1400px] h-100%">
           {filteredJobs.slice(0, visibleJobs).map((job) => (
             <JobCard key={job.id} job={job} />
           ))}
@@ -34,9 +34,7 @@ const Jobs = () => {
 
       {filteredJobs.length > visibleJobs && (
         <div className="text-center mt-10 text-sm">
-          <Button onClick={handleShowMore}>
-            Show More
-          </Button>
+          <Button onClick={handleShowMore}>Show More</Button>
         </div>
       )}
     </div>
