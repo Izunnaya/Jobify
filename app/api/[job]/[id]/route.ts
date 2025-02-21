@@ -1,17 +1,17 @@
-import {prisma} from "@/lib/prisma"
-import { NextRequest, NextResponse } from "next/server"
+import { prisma } from "@/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
 
-interface Params {
-  id: string
-}
-
-export const GET = async (req: NextRequest, {params} : {params : Params}) => {
-  const {id} = params
+export const GET = async (req: NextRequest, { params }: { params: { id: string } }) => {
+  const { id } = await params;
 
   try {
     const post = await prisma.jobPosting.findUnique({
       where: { id },
     });
+
+    if (!post) {
+      return new NextResponse(JSON.stringify({ error: "Post not found" }), { status: 404 });
+    }
 
     return new NextResponse(JSON.stringify(post, null, 2), { status: 200 });
   } catch (err) {
@@ -21,4 +21,4 @@ export const GET = async (req: NextRequest, {params} : {params : Params}) => {
       { status: 500 }
     );
   }
-}
+};
