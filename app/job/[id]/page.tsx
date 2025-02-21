@@ -1,29 +1,54 @@
+import { prisma } from "@/lib/prisma";
 import Button from "@/components/ui/Button";
 import { formatPostedDate } from "@/utils/formatDate";
 import Link from "next/link";
 
-interface DynamicProps {
-  params: {
-    id: string;
-  };
+interface JobDetailsProps {
+  params: Promise<{ id: string }>;
 }
 
-const getData = async (id: string) => {
-  const res = await fetch(`http://localhost:3000/api/post/${id}`, {
-    cache: "no-store",
+// const getData = async (id: string) => {
+//   const res = await fetch(`http://localhost:3000/api/post/${id}`, {
+//     cache: "no-store",
+//   });
+
+//   if (!res.ok) {
+//     throw new Error("Failed");
+//   }
+
+//   return res.json();
+// };
+
+// export default async function JobDetails({ params }): JobDetailsProps {
+
+//   //fetch jobdetails using the id from the url.
+//   const job = await prisma.job.findUnique({
+//     where: { id:params.id
+//     }
+//   })
+
+//   if (!job) {
+//     throw new Error("Failed");
+//   }
+
+//   return res.json();
+// };
+// const page = async ({ params }: DynamicProps)
+const page = async ({ params }: JobDetailsProps) => {
+  //fetch jobdetails using the id from the url.
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
+
+  const job = await prisma.jobPosting.findUnique({
+    where: { id },
   });
 
-  if (!res.ok) {
-    throw new Error("Failed");
+  if (!job) {
+    // throw new Error("Failed");
+    return <div>No job found</div>;
   }
 
-  return res.json();
-};
-const page = async ({ params }: DynamicProps) => {
-  const { id } = params;
-  const job = await getData(id);
-  const jobTitle = job.name;
-  const formattedPostedDate = formatPostedDate(job.createdAt);
+  // return res.json();
   return (
     <>
       <div className="bg-[url('/hero.png')] h-fit relative w-full bg-cover mt-[-70px] py-28">
@@ -70,7 +95,7 @@ const page = async ({ params }: DynamicProps) => {
                       <div>
                         <p>Posted</p>
                         <span className="font-medium">
-                          {formattedPostedDate}
+                          {/* {formatPostedDate} */}
                         </span>
                       </div>
                     </li>
@@ -85,7 +110,10 @@ const page = async ({ params }: DynamicProps) => {
               <h5 className="text-lg font-semibold">Job Description:</h5>
               <p className="mt-4 text-slate-400">{job.description}</p>
               <div className="mt-4">
-                <Link href={`/apply?title=${encodeURIComponent(jobTitle)}`}>
+                {/* <Link
+                  href={`/apply?title=${encodeURIComponent(jobTitle)}`}
+                ></Link> */}
+                <Link href={`/apply/${job.id}`}>
                   <Button>Apply Now</Button>
                 </Link>
               </div>
@@ -96,5 +124,8 @@ const page = async ({ params }: DynamicProps) => {
     </>
   );
 };
+// const { id } = params;
+// const job = await getData(id);
+// const formattedPostedDate = formatPostedDate(job.createdAt);
 
 export default page;
