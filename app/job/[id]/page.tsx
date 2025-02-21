@@ -1,5 +1,6 @@
 import Button from "@/components/ui/Button";
 import { formatPostedDate } from "@/utils/formatDate";
+import Link from "next/link";
 
 interface DynamicProps {
   params: {
@@ -21,6 +22,7 @@ const getData = async (id: string) => {
 const page = async ({ params }: DynamicProps) => {
   const { id } = params;
   const job = await getData(id);
+  const jobTitle = job.name;
   const formattedPostedDate = formatPostedDate(job.createdAt);
   return (
     <>
@@ -31,7 +33,7 @@ const page = async ({ params }: DynamicProps) => {
       </div>
 
       <div className="w-[90%] mx-auto max-w-[1450px] py-20">
-        <div className="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
+        <div className="grid md:grid-cols-12 grid-cols-1 gap-[30px] items-center">
           <div className="lg:col-span-4 md:col-span-6">
             <div className="shadow rounded-md bg-white sticky top-20">
               <div className="p-6">
@@ -78,20 +80,15 @@ const page = async ({ params }: DynamicProps) => {
             </div>
           </div>
 
-          <div className="lg:col-span-8 md:col-span-6">
-            <h5 className="text-lg font-semibold">Job Description:</h5>
-            <p className="mt-4 text-slate-400">
-              {job.description}
-              {job.description}
-              {job.description}
-              {job.description}
-              {job.description}
-              {job.description}
-              {job.description}
-            </p>
-
-            <div className="mt-4">
-              <Button>Apply Now</Button>
+          <div className="lg:col-span-8 md:col-span-6 text-center flex-grow">
+            <div className="h-full w-full pt-90">
+              <h5 className="text-lg font-semibold">Job Description:</h5>
+              <p className="mt-4 text-slate-400">{job.description}</p>
+              <div className="mt-4">
+                <Link href={`/apply?title=${encodeURIComponent(jobTitle)}`}>
+                  <Button>Apply Now</Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
