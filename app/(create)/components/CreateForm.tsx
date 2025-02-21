@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import {
   createJob,
   type FormData,
-} from "@/app/(create)/actions/createJobActions";
+} from "@/app/(create)/actions/createJobServerActions";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { useState, useEffect } from "react";
@@ -14,6 +14,8 @@ import clsx from "clsx";
 const CreateForm = () => {
   const [file, setFile] = useState<File>();
   const { edgestore } = useEdgeStore();
+
+  // In the context of the useState<File>() declaration, the 'File' used here is the built-in JavaScript File interface, which is part of the Web API. This interface represents file objects, such as those selected by a user through an <input type="file"> element. The properties of the File interface are predefined by the browser and do not need to be explicitly defined in here, this why you don't find the interface anywhere in this file
 
   const {
     register,
@@ -95,13 +97,8 @@ const CreateForm = () => {
                 ...register("salary", {
                   required: true,
                   validate: (value) => {
-                    const parsedValue = parseFloat(
-                      value.replace(/,/g, "")
-                    );
-                    return (
-                      !isNaN(parsedValue) ||
-                      "Must be a number"
-                    );
+                    const parsedValue = parseFloat(value.replace(/,/g, ""));
+                    return !isNaN(parsedValue) || "Must be a number";
                   },
                 }),
               }}
@@ -148,8 +145,7 @@ const CreateForm = () => {
                   sm:text-sm
                   sm:leading-6
                   mb-5`,
-                  isSubmitting &&
-                    "opacity-50 cursor-default"
+                  isSubmitting && "opacity-50 cursor-default"
                 )}
               >
                 <option value="Part Time">Part-Time</option>
@@ -171,11 +167,7 @@ const CreateForm = () => {
             }}
           />
         </div>
-        <input
-          type="hidden"
-          id="img"
-          {...register("img")}
-        />
+        <input type="hidden" id="img" {...register("img")} />
         <Button marginTop type="submit">
           Submit
         </Button>
