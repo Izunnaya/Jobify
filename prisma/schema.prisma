@@ -18,3 +18,11 @@ model JobPosting {
   employmentType String?
   createdAt      DateTime @default(now())
 }
+
+model AppliedJobs {
+  name           String
+  salary         Float?   @default(0)
+  location       String
+  resume            String?
+  createdAt      DateTime @default(now())
+}
