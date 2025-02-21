@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@edgestore/react": "^0.1.6",
-    "@edgestore/server": "^0.1.6",
+    "@edgestore/react": "^0.1.7",
+    "@edgestore/server": "^0.1.7",
     "@prisma/client": "^6.4.0",
     "clsx": "^2.1.0",
     "next": "^14.2.24",
@@ -18,7 +18,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.50.1",
     "react-icons": "^5.0.1",
-    "zod": "^3.22.4",
+    "zod": "^3.24.2",
     "zustand": "^4.5.0"
   },
   "devDependencies": {
