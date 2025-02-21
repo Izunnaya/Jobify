@@ -8,6 +8,7 @@ import {
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { useEdgeStore } from "@/lib/edgestore";
 
 const ApplyForm = () => {
@@ -103,9 +104,12 @@ const ApplyForm = () => {
           </div>
         </div>
         <input type="hidden" id="img" {...register("img")} />
-        <Button marginTop type="submit">
-          Apply
-        </Button>
+
+        <Link href={"/"}>
+          <Button marginTop type="submit">
+            Apply
+          </Button>
+        </Link>
       </form>
     </div>
   );
