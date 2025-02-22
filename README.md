@@ -1,5 +1,5 @@
 # JOBIFY
-
+![landing image](image.png)
 Jobify is an ongoing job-board applcatication that's still being developed
 
 
