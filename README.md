@@ -8,6 +8,8 @@ Jobify is an ongoing job-board applcatication that's still being developed
 - [Next.js](https://nextjs.org/) – Framework
 - [TypeScript](https://www.typescriptlang.org/) – Language
 - [Tailwind](https://tailwindcss.com/) – CSS
+- [Zudstand](https://zustand.docs.pmnd.rs/getting-started/introduction) - State Management
+- [React-form](https://react-hook-form.com/) - Forms & Form validations
 - [Primsa](https://prisma.io/) - ORM
 - [Railway](https://railway.com/) - Database hosting
 - [Postgress](https://www.postgresql.org/) - Database
