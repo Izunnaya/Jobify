@@ -1,3 +1,4 @@
+export const revalidate = 3;
 import About from "@/components/shared/About";
 import Contact from "@/components/shared/Contact";
 import Hero from "@/components/shared/Hero";
