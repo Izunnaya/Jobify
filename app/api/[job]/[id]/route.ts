@@ -7,8 +7,8 @@ export async function GET(
   context: { params: { job: string; id: string } }
 ) {
   try {
-    // @ts-expect-error -- we know this is safe for some reason
-    const { job, id } = context.params;
+   
+    const { id } = context.params;
 
     // Example: if your DB only needs `id`, that's fine—just pass it here
     const post = await prisma.jobPosting.findUnique({
